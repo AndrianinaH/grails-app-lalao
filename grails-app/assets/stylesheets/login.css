@@ -14,20 +14,20 @@
 .input-field input[type=text]:focus + label,
 .input-field input[type=email]:focus + label,
 .input-field input[type=password]:focus + label {
-  color: #283593;
+  color: #ffb300 !important;
 }
 
 .input-field input[type=date]:focus,
 .input-field input[type=text]:focus,
 .input-field input[type=email]:focus,
 .input-field input[type=password]:focus {
-  border-bottom: 2px solid #283593;
-  box-shadow: none;
+  border-bottom: 2px solid #ffb300 !important;
+  box-shadow: none !important;
 }
 
 
 .input-field.col.s12 > p{
-  color:#283593;
+  color:#ffb300 !important;
 }
 
 .centreo {

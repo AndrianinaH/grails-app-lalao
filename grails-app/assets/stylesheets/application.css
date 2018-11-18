@@ -1,0 +1,195 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require bootstrap
+*= require grails
+*= require main
+*= require mobile
+*= require_self
+*/
+/*-------- menu navbar --------------*/
+a{
+    cursor: pointer ;
+}
+strong{
+    font-weight: bold !important;
+}
+.centreo{
+    margin: auto;
+    text-align: center;
+}
+.righteo{
+    position: relative;
+    float: right;
+    top:5px;
+}
+.my-dropdown{
+    width:250px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top:65px !important;
+}
+.dropdown-content li>a, .dropdown-content li>span {
+    color: grey;
+}
+/*-------- fin menu navbar ----------*/
+.my-titre{
+    margin-left : 10px;
+}
+.my-sous-titre{
+    text-align: center;
+    font-size: 1.50rem;
+    line-height: 110%;
+    font-weight: 500;
+}
+header, main {
+    padding-left: 300px;
+}
+@media only screen and (max-width : 992px) {
+    header, main {
+        padding-left: 0;
+    }
+}
+.bold{
+    font-weight: bold !important;
+}
+.modal{
+    overflow-y: initial !important;
+}
+.my-container{
+    margin: 15px;
+}
+.btn-floating.halfway-fab2{
+    position: absolute;
+    left: 20px;
+    bottom: -26px;
+}
+
+.my-btn-label{
+    margin: 6px;
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active {
+    background-color: rgba(0,0,0,0.05) !important;
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active a, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active a {
+    color : rgba(0,0,0,0.87) !important;
+}
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+    float:none !important;
+}
+/* --------- menu badge --------- */
+span.badge {
+    font-size: 11px !important;
+}
+span.badge[data-badge-caption]::after {
+    font-size: 10px;
+}
+/* ---------------- home page ---------------- */
+body{
+    background-color: #fafafa !important;
+    scroll-behavior: smooth;
+}
+.login-box{
+    width:50%;
+    margin: auto;
+}
+.normal-box{
+    margin: auto;
+}
+.tabs .indicator{
+    background-color: #ffb300;
+}
+.my-btn{
+    width: 50%;
+}
+.optgroup>span{
+    color: #ffb300 !important;
+}
+.optgroup{
+    border-bottom: solid 2px #ffb300 !important;
+}
+/* ---------------- fin home page ------------ */
+
+/* ---------------- input color ------------ */
+.input-field input[type=date]:focus + label,
+.input-field input[type=number]:focus + label,
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label {
+    color: #ffb300 !important;
+}
+.input-field input[type=date]:focus,
+.input-field input[type=number]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus,
+.input-field textarea:focus {
+    border-bottom: 2px solid #ffb300 !important;
+    box-shadow: 0 1px 0 0 #ffb300 !important;
+}
+.input-field.col.s12 > p{
+    color:#ffb300;
+}
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #ffb300 !important;
+}
+
+
+/*---------- datatable style -------------*/
+table.dataTable thead th {
+    border-bottom: 1px solid #d0d0d0 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 2px !important;
+    transition: all .3s ease-out !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2) !important;
+    color: #FFF !important;
+    background-color: #ffb300 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2) !important;
+    color: #ffb300 !important;
+    background-color: #FFF !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: none !important;
+}
+
+.dataTables_length,.dataTables_info{
+    margin-left:30px !important;
+}
+.dataTables_filter{
+    margin-right:30px !important;
+}
+.dataTables_filter input[type=search]:focus{
+    color:#ffb300 !important;
+    box-shadow: none;
+    border-bottom: 2px solid #ffb300;
+}
+table.dataTable.no-footer {
+    border-bottom:none !important;
+}
+
+table.dataTable{
+    width: 100% !important;
+}
+
+/*---------- fin datatable style -------------*/
+
+
+
+
+
+
