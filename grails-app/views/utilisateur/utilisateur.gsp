@@ -67,7 +67,7 @@
         <a class="modal-action modal-close btn-floating grey darken-3 right"><i class="material-icons">close</i></a>
         <h5 class="center indigo-text">Nouveau Message</h5>
         <form action="utilisateur/save" method="POST" class="row">
-            <input type="hidden" name="etat" value="non lu" required>
+            <input type="hidden" name="statut" value="0" required>
             <input type="hidden" name="dateCreation" value="${utilService.formatDate(new Date())}" required>
             <div class="input-field col s12">
                 <input type="text" name="nom" required>
@@ -105,6 +105,7 @@
         <h5 class="center indigo-text">Modifier Utilisateur</h5>
         <form action="utilisateur/save" method="POST" class="row">
             <input type="hidden" id="idEdit" name="id" required>
+            <input type="hidden" name="statut" value="0" required>
             <input type="hidden" id="dateCreationEdit" name="dateCreation" required>
             <div class="input-field col s12">
                 <input type="text" id="nomEdit" name="nom" required>

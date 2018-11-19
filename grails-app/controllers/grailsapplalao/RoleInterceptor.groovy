@@ -7,6 +7,7 @@ class RoleInterceptor {
 
         match(controller: "message")
         match(controller: "utilisateur")
+//        match(controller: "resultat")
     }
 
     boolean before() {

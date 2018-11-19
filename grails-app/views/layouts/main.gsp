@@ -66,16 +66,16 @@
             </a>
         </div>
     </li>
+    <li class="no-padding">
+        <a href="/">
+            <i class="material-icons">dashboard</i>Tableau de bord
+        </a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
     <g:if test="${session.grails_user!=null}">
         <g:if test="${session.grails_user.type == 1}">
-            <li class="no-padding">
-                <a href="/">
-                    <i class="material-icons">dashboard</i>Tableau de bord
-                </a>
-            </li>
-            <li>
-                <div class="divider"></div>
-            </li>
             <li class="no-padding">
                 <a href="/utilisateur">
                     <i class="material-icons">group</i>Gérer les Utilisateurs

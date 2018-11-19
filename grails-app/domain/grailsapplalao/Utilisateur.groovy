@@ -4,6 +4,7 @@ class Utilisateur {
     String nom
     String password
     int type
+    int statut
     Date dateCreation
 
     static constraints = {
