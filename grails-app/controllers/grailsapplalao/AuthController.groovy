@@ -23,4 +23,6 @@ class AuthController extends BaseController{
         session.invalidate()
         redirect (uri:"/auth")
     }
+	
+	/*TEST*/
 }
