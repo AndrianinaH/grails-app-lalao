@@ -118,15 +118,15 @@
             </li>
 
             <li class="no-padding">
-                <a href="/tchat">
-                    <i class="material-icons">grade</i>Mahery Kevin
-                </a>
+                <g:link controller="tchat" id="2"><i class="material-icons">grade</i>Mahery Kevin</g:link>
             </li>
+
             <li class="no-padding">
                 <a href="/fdfsdfsd">
                     <i class="material-icons">grade</i>Andrianina Layton
                 </a>
             </li>
+
             <li class="no-padding">
                 <a href="/fdfsdfsd">
                     <i class="material-icons">grade</i>Han Solo

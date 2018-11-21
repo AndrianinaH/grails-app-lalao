@@ -18,7 +18,7 @@
         <p><strong>Mahery Kevin</strong></p>
 
         <div class="discussion_content">
-            <div class='incoming_message'>
+            <!--div class='incoming_message'>
                 <div class='received_message'>
                     <div class='received_width_message'>
                         <div class='card-panel red message-content'>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div!-->
         </div>
 
 
@@ -60,17 +60,17 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s9">
-                        <input id="text" type="text">
+                        <input id="message" type="text">
                         <label>Votre message</label>
                     </div>
 
                     <div class="input-field col s1">
-                        <a title="envoyer" class="btn-floating btn-large waves-effect waves-light red"><i
+                        <a title="envoyer" id="send" class="btn-floating btn-large waves-effect waves-light red"><i
                                 class="material-icons">send</i></a>
                     </div>
 
                     <div class="input-field col s1">
-                        <a title="jouer" class="btn-floating btn-large waves-effect waves-light red"><i
+                        <a title="jouer" id="play" class="btn-floating btn-large waves-effect waves-light red"><i
                                 class="material-icons">games</i></a>
                     </div>
 
@@ -101,20 +101,24 @@
         //------------- select
         $("select").material_select();
 
-        $("#enter").click(function () {
-            var URL = "${createLink(controller:'tchat',action:'sendMessage')}";
+        $("#send").click(function () {
+            var URL = "${createLink(controller:'message',action:'sendMessage')}";
+            var message = $.trim($("#message").val());
 
-            $.ajax({
-                url: URL,
-                type: "POST",
-                data: {nom: '${session.grails_user}'},
-                success: function (resp) {
-                    console.log(resp);
-                }
-            });
+            if(message) {
+                $.ajax({
+                    url: URL,
+                    type: "POST",
+                    data: {idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, content: message,
+                        dateCreation: "${utilService.formatDate(new Date())}", etat:"non-lu"},
+                    success: function (resp) {
+                        console.log(resp);
+                    }
+                });
+            }
         });
 
-        $("#send").click(function () {
+        $("#sendTest").click(function () {
             var URL = "${createLink(controller:'tchat',action:'getMessage')}";
 
             $.ajax({
