@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row login-box">
-                <form method="POST" action="auth/login">
+                <form method="POST" action="/auth/login">
                     <div class='input-field col s12'>
                         <input type='text' id='mail' name="nom" required>
                         <label for='mail'>Username</label>
@@ -37,6 +37,9 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div>
+                <a class="${color}-text text-darken-1" href="/auth/inscription">Créer un nouveau compte</a>
             </div>
             <br>
             <p>${loginError} </p>

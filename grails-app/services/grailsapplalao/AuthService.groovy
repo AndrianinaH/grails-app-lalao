@@ -1,6 +1,7 @@
 package grailsapplalao
 
 import grails.gorm.transactions.Transactional
+import org.springframework.web.multipart.MultipartFile
 
 import javax.rmi.CORBA.Util
 import java.security.MessageDigest
@@ -47,5 +48,20 @@ class AuthService {
         MessageDigest sha1 = MessageDigest.getInstance("SHA1")
         sha1.update(mot.getBytes())
         return new BigInteger(1,sha1.digest()).toString(16).padLeft(40,'O')
+    }
+
+    def saveUserWithImageProfil(Utilisateur utilisateur, def file){
+        if(file.filename != ""){
+            String imgProfil = convertSpringFile(file).getName()
+            utilisateur.setImageProfil(imgProfil)
+        }
+        saveUtilisateur(utilisateur)
+    }
+
+    def convertSpringFile(def file) throws IOException {
+        def newFile = new File(UtilService.uploadUrl+file.getOriginalFilename());
+        if(newFile.exists()) newFile.delete();
+        file.transferTo(newFile);
+        return newFile;
     }
 }
