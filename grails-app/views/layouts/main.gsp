@@ -38,7 +38,7 @@
                     <!-- Dropdown Structure -->
                     <ul id="dropdown-profil" class="my-dropdown dropdown-content">
                         <li>
-                            <a href="auth/logout">Se déconnecter</a>
+                            <a href="/auth/logout">Se déconnecter</a>
                         </li>
                     </ul>
                 </ul>
@@ -54,15 +54,22 @@
             <div class="background">
                 <g:img dir="images" file="fond.jpg"/>
             </div>
-            <a>
+            <a href="/auth/profil">
                 <span class="circle">
-                    <g:img class="circle" dir="images" file="user.png"/>
+                    <g:if test="${session.grails_user != null}">
+                        <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil!= null}">
+                            <img src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </g:if>
                 </span>
             </a>
-            <a>
+            <a href="/auth/profil">
                 <span class="white-text name">Bonjour</span>
             </a>
-            <a>
+            <a href="/auth/profil">
                 <span class="white-text email"><strong>${session.grails_user != null ? session.grails_user.nom : ""}</strong>
                 </span>
             </a>

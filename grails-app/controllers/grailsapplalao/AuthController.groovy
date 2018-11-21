@@ -44,6 +44,14 @@ class AuthController extends BaseController{
             redirect(uri:"/auth/inscription", params:[error:ex.getMessage()])
         }
     }
+
+    def profil(){
+        def allModel = [ : ]
+        allModel << ["color" : this.color]
+        allModel << ["utilService" : this.utilService]
+        allModel << ["user_actif" : session.grails_user]
+        render(view : "profil.gsp", model: allModel)
+    }
 	
 	// serveur d'image
     // localhost/grails_app_lalao_image
