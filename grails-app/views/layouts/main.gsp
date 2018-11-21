@@ -79,7 +79,7 @@
         <g:if test="${session.grails_user.type == 1}">
             <li class="no-padding">
                 <a href="/">
-                    <i class="material-icons">dashboard</i>Tableau de bord
+                    <i class="material-icons">dashboard</i>Tableau de bordd
                 </a>
             </li>
             <li>
