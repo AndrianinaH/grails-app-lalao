@@ -6,16 +6,18 @@ class BootStrap {
 //        new Utilisateur(
 //                nom: "admin",
 //                password: AuthService.toSha1("root"),
+//                statut: 1,
 //                type: 1,
 //                dateCreation: new Date()
 //        ).save()
 //        new Utilisateur(
 //                nom: "paul",
 //                password: AuthService.toSha1("root"),
+//                statut: 1,
 //                type: 2,
 //                dateCreation: new Date()
 //        ).save()
-
+//
 //        new Message(
 //                content: "test message blablabla",
 //                idAuteur:  1,

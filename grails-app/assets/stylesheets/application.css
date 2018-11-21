@@ -188,7 +188,39 @@ table.dataTable{
 
 /*---------- fin datatable style -------------*/
 
+/*---------- Message Style ----------------*/
+.discussion_content{
+    width:100%;
+    overflow-y: auto;
+    height: 450px;
+}
 
+.received_message{
+    width:90%;
+}
+
+.received_width_message{
+    width:57%;
+}
+
+.outgoing_message{
+    overflow: hidden;
+}
+
+.sent_message{
+    float:right;
+    width: 46%;
+}
+
+.message-content {
+    padding: 14px !important;
+}
+
+.my-s2 {
+    width: 8.666667% !important;
+}
+
+/*---------- Fin Message Style ------------*/
 
 
 

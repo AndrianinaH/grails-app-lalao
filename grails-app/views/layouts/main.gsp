@@ -7,7 +7,7 @@
         <g:layoutTitle default="Grails App Lalao"/>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
+    <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="materialize.min.css"/>
@@ -15,6 +15,7 @@
 
     <g:layoutHead/>
 </head>
+
 <body>
 
 <!----------------------- Menu Principal  ------------------------>
@@ -51,18 +52,19 @@
     <li>
         <div class="userView">
             <div class="background">
-                <g:img dir="images" file="fond.jpg" />
+                <g:img dir="images" file="fond.jpg"/>
             </div>
             <a>
                 <span class="circle">
-                    <g:img class="circle" dir="images" file="user.png" />
+                    <g:img class="circle" dir="images" file="user.png"/>
                 </span>
             </a>
             <a>
                 <span class="white-text name">Bonjour</span>
             </a>
             <a>
-                <span class="white-text email"><strong>${session.grails_user != null ? session.grails_user.nom : ""}</strong></span>
+                <span class="white-text email"><strong>${session.grails_user != null ? session.grails_user.nom : ""}</strong>
+                </span>
             </a>
         </div>
     </li>
@@ -74,7 +76,7 @@
     <li>
         <div class="divider"></div>
     </li>
-    <g:if test="${session.grails_user!=null}">
+    <g:if test="${session.grails_user != null}">
         <g:if test="${session.grails_user.type == 1}">
             <li class="no-padding">
                 <a href="/utilisateur">
@@ -95,25 +97,52 @@
         </g:if>
     </g:if>
 
-    <li class="no-padding">
-        <a href="/fdfsdfsd">
-            <i class="material-icons">message</i>Liste de vos Message
-        </a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
+    <g:if test="${session.grails_user != null}">
+        <g:if test="${session.grails_user.type == 2}">
+            <li class="no-padding">
+                <a href="/fdfsdfsd">
+                    <i class="material-icons">message</i>Mes Messages <strong>(2)</strong>
+                </a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
 
+            <li class="no-padding">
+                <a>
+                    <i class="material-icons">perm_identity</i>Joueurs Connectés
+                </a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
 
+            <li class="no-padding">
+                <a href="/tchat">
+                    <i class="material-icons">grade</i>Mahery Kevin
+                </a>
+            </li>
+            <li class="no-padding">
+                <a href="/fdfsdfsd">
+                    <i class="material-icons">grade</i>Andrianina Layton
+                </a>
+            </li>
+            <li class="no-padding">
+                <a href="/fdfsdfsd">
+                    <i class="material-icons">grade</i>Han Solo
+                </a>
+            </li>
+        </g:if>
+    </g:if>
 
 </ul>
 
 
-    <g:layoutBody/>
+<g:layoutBody/>
 
-    <div class="footer" role="contentinfo"></div>
+<div class="footer" role="contentinfo"></div>
 
-    %{--<asset:javascript src="application.js"/>--}%
+%{--<asset:javascript src="application.js"/>--}%
 
 </body>
 </html>

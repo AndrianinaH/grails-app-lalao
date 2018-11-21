@@ -4,22 +4,11 @@
     <meta name="layout" content="main"/>
     <title>Grails lalao</title>
 </head>
+
 <body>
 
 <main>
-    <div class="container">
-        gfsdf
-        sdf
-        sd
-        fds
-        fsd
-        fsd
-        fs
-        fs
-        fs
-        ds
-        fsd
-
+    <div class="my-container">
     </div>
 </main>
 <asset:javascript src="jquery-3.1.1.min.js"/>
@@ -48,4 +37,3 @@
 </script>
 </body>
 </html>
-

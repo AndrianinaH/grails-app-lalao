@@ -1,5 +1,7 @@
 package grailsapplalao
 
+import grails.converters.JSON
+
 import javax.rmi.CORBA.Util
 
 class MessageController extends BaseController{
@@ -26,4 +28,5 @@ class MessageController extends BaseController{
         messageService.deleteMessage(message);
         redirect(uri:"/message")
     }
+
 }
