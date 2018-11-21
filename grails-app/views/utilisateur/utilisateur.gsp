@@ -23,6 +23,7 @@
             <thead>
             <tr>
                 <th>id</th>
+                <th>image de Profil</th>
                 <th>Nom</th>
                 <th>Mot de passe</th>
                 <th>Type</th>
@@ -34,6 +35,7 @@
             <g:each var="data" in="${allUser}">
                 <tr>
                     <td>${data.id}</td>
+                    <td>${data.imageProfil}</td>
                     <td>${data.nom}</td>
                     <td>${data.password}</td>
                     <td>${data.type == 1 ? "Admin" : "Joueur"}</td>
@@ -43,6 +45,8 @@
                                 data-id="${data.id}"
                                 data-nom="${data.nom}"
                                 data-type="${data.type}"
+                                data-imageProfil="${data.imageProfil}"
+                                data-statut="${data.statut}"
                                 data-dateCreation="${utilService.formatDate(data.dateCreation)}">
                             <i class="material-icons">edit</i>
                         </button>
@@ -68,6 +72,7 @@
         <h5 class="center indigo-text">Nouveau Message</h5>
         <form action="utilisateur/save" method="POST" class="row">
             <input type="hidden" name="statut" value="0" required>
+            <input type="hidden" name="imageProfil" value="" required>
             <input type="hidden" name="dateCreation" value="${utilService.formatDate(new Date())}" required>
             <div class="input-field col s12">
                 <input type="text" name="nom" required>
@@ -105,7 +110,8 @@
         <h5 class="center indigo-text">Modifier Utilisateur</h5>
         <form action="utilisateur/save" method="POST" class="row">
             <input type="hidden" id="idEdit" name="id" required>
-            <input type="hidden" name="statut" value="0" required>
+            <input type="hidden" id="statutEdit" name="statut" value="0" required>
+            <input type="hidden" id="imageProfilEdit" name="imageProfil" value="" required>
             <input type="hidden" id="dateCreationEdit" name="dateCreation" required>
             <div class="input-field col s12">
                 <input type="text" id="nomEdit" name="nom" required>
@@ -175,7 +181,7 @@
         //--------------- DataTables
         $('#datatable').DataTable({
             "language": getLanguage(),
-            order:[[4,"desc"]]
+            order:[[5,"desc"]]
         });
         //------------- sidenav
         $(".button-collapse").sideNav();
@@ -199,19 +205,26 @@
             var nom = $(this).attr('data-nom');
             var dateCreation = $(this).attr('data-dateCreation');
             var type = $(this).attr('data-type');
+            var statut = $(this).attr('data-statut');
+            var imageProfil = $(this).attr('data-imageProfil');
 
             $('#editData').modal('open');
 
             $("#idEdit").val(id);
             $("#nomEdit").val(nom);
             $("#dateCreationEdit").val(dateCreation);
+            $("#statuEdit").val(statut);
+            $("#imageProfilEdit").val(imageProfil);
+            $("#typeEdit option").each(function() {
+                $(this).removeAttr("selected");
+            });
             $("#typeEdit option").each(function() {
                 if($(this).val()==type)
                 {
                     $(this).attr("selected","selected");
                 }
             });
-
+            $("select").material_select();
             Materialize.updateTextFields();
         });
 

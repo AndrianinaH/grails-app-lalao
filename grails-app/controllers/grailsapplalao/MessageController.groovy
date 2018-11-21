@@ -13,8 +13,7 @@ class MessageController extends BaseController{
         allModel << ["allUser" : Utilisateur.list()]
         allModel << ["utilService" : this.utilService]
 
-        render(view : "message.gsp", model: allModel
-        )
+        render(view : "message.gsp", model: allModel)
     }
 
     def save(Message message){

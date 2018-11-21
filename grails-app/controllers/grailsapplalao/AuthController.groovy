@@ -1,5 +1,7 @@
 package grailsapplalao
 
+import org.springframework.web.multipart.MultipartFile
+
 class AuthController extends BaseController{
 
     def index(){
@@ -23,6 +25,34 @@ class AuthController extends BaseController{
         session.invalidate()
         redirect (uri:"/auth")
     }
+
+    def inscription(){
+        def allModel = [ : ]
+        allModel << ["color" : this.color]
+        allModel << ["utilService" : this.utilService]
+        if(params.error!=null) allModel << ["loginError" : params.error]
+        render(view : 'inscription.gsp', model : allModel)
+    }
+
+    def signup(Utilisateur user){
+        try{
+            def file = request.getFile("file")
+            authService.saveUserWithImageProfil(user,file);
+            redirect(uri:"/auth")
+        }catch (Exception ex){
+            ex.printStackTrace()
+            redirect(uri:"/auth/inscription", params:[error:ex.getMessage()])
+        }
+    }
+
+    def profil(){
+        def allModel = [ : ]
+        allModel << ["color" : this.color]
+        allModel << ["utilService" : this.utilService]
+        allModel << ["user_actif" : session.grails_user]
+        render(view : "profil.gsp", model: allModel)
+    }
 	
-	/*TEST*/
+	// serveur d'image
+    // localhost/grails_app_lalao_image
 }

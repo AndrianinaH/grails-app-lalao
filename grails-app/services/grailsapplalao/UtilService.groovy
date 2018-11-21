@@ -18,4 +18,6 @@ class UtilService {
         Format f = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return f.format(date);
     }
+
+    static def uploadUrl = "D:/Serveur Web/UwAmp/www/grails_app_lalao_image/";
 }
