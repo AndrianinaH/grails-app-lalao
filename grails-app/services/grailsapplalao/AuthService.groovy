@@ -12,9 +12,19 @@ class AuthService {
     def login(Utilisateur utilisateur){
         utilisateur.setPassword(sha1(utilisateur.password))
         def allUser = Utilisateur.findAllByNomAndPassword(utilisateur.nom,utilisateur.password)
-        if(allUser.size()!=0) return allUser[0]
+        if(allUser.size()!=0) {
+            def userConnecter = allUser[0]
+            userConnecter.setStatut(1)
+            userConnecter.save();
+        }
         else throw new Exception("Authentification echouer")
     }
+
+    def logout(Utilisateur utilisateur){
+        utilisateur.setStatut(0)
+        utilisateur.save()
+    }
+
 
     def saveUtilisateur(Utilisateur utilisateur){
 

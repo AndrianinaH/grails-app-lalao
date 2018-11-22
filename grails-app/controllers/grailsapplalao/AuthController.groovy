@@ -26,6 +26,8 @@ class AuthController extends BaseController{
     }
 
     def logout(){
+        def userCo = session.grails_user
+        authService.logout(userCo)
         session.invalidate()
         redirect (uri:"/auth")
     }
