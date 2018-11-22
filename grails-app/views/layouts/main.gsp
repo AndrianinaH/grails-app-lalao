@@ -125,13 +125,11 @@
             </li>
 
             <li class="no-padding">
-                <g:link controller="tchat" id="2"><i class="material-icons">grade</i>Mahery Kevin</g:link>
+                <g:link controller="tchat" id="4"><i class="material-icons">grade</i>Rabe Rabe</g:link>
             </li>
 
             <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Andrianina Layton
-                </a>
+                <g:link controller="tchat" id="3"><i class="material-icons">grade</i>Rakoto Rakoto</g:link>
             </li>
 
             <li class="no-padding">
