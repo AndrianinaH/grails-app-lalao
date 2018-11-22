@@ -15,7 +15,7 @@
 <body>
 <main>
     <div class="my-container">
-        <p><strong>Mahery Kevin</strong></p>
+        <h5><strong>${destinataire.nom}</strong></h5>
 
         <div class="discussion_content">
             <g:each var="message" in="${messages}">
@@ -140,19 +140,23 @@
         function charger() {
             var URL = "${createLink(controller:'tchat',action:'getLastMessage')}";
             var lastMessage = $(".discussion_content span:last").attr('id');
+            chargerMessage(URL,lastMessage);
             setTimeout(function() {
-                $.ajax({
-                    url: URL,
-                    data:{idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, idLastMessage: lastMessage},
-                    success:function(rep){
-                        var i;
-                        for(i=0;i<rep.length;i++){
-                            createReceivedMsg(rep[i].content, rep[i].id);
-                        }
+                charger()
+            },1000)
+        }
+
+        function chargerMessage(URL,lastMessage) {
+            $.ajax({
+                url: URL,
+                data:{idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, idLastMessage: lastMessage},
+                success:function(rep){
+                    var i;
+                    for(i=0;i<rep.length;i++){
+                        createReceivedMsg(rep[i].content, rep[i].id);
                     }
-                });
-                charger();
-            },3000)
+                }
+            });
         }
     });
 </script>
