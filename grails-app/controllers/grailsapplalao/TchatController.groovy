@@ -2,28 +2,31 @@ package grailsapplalao
 
 import grails.converters.JSON
 
-import java.text.SimpleDateFormat
-
 class TchatController extends BaseController {
 
     def index() {
         def allModel = [ : ]
         allModel << ["destinataire" : Utilisateur.get(params.id)]
-        allModel << ["utilService" : this.utilService]
+        allModel << ["messages" : messageService.getMessage(session.grails_user.id, params.id)]
         if(params.error!=null) allModel << ["error" : params.error]
-        render(view : "index", model: allModel
-        )
-        /*def user = Utilisateur.get(params.id)
-        render(view: "index", model: [destinataire: user])*/
+        render(view : "index", model: allModel)
     }
 
     def sendMessage(Message message) {
-        message.setDateCreation(new Date(params.dateCreation))
+        message.setDateCreation(new Date())
         messageService.saveMessage(message)
-        render "success"
+        render message.id
     }
 
     def getMessage() {
         render messageService.getMessage(params.idAuteur, params.idDestinataire) as JSON
+    }
+
+    def getLastMessage(){
+        render messageService.getLastMessage(params.idAuteur, params.idDestinataire, params.idLastMessage) as JSON
+    }
+
+    def userDisponible(){
+        render utilisateurService.userConnected(session.grails_user.id) as JSON;
     }
 }

@@ -124,29 +124,8 @@
                 <div class="divider"></div>
             </li>
 
-            <li class="no-padding">
-                <g:link controller="tchat" id="2"><i class="material-icons">grade</i>Mahery Kevin</g:link>
-            </li>
-
-            <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Andrianina Layton
-                </a>
-            </li>
-
-            <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Han Solo
-                </a>
-            </li>
-            <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Han Solo
-                </a>
-            </li>
-
-
-
+            <div id="user-connected">
+            </div>
 
         </g:if>
     </g:if>

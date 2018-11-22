@@ -13,10 +13,17 @@ class MessageService {
         message.delete();
     }
 
-    def getMessage(idAuteur, idDestinataire){
+    def getMessage(idAut, idDest){
         def listMessage = Message.where {
-            ("idAuteur" == idAuteur && "idDestinataire" == idDestinataire) || ("idAuteur" == idDestinataire && "idDestinataire" == idAuteur)
+            (idAuteur == idAut && idDestinataire == idDest) || (idAuteur == idDest && idDestinataire == idAut)
         }
         return listMessage.list()
+    }
+
+    def getLastMessage(idAut, idDest, idLastMessage){
+        def message = Message.where {
+            idAuteur == idDest && idDestinataire == idAut && id > idLastMessage
+        }
+        return message.list()
     }
 }

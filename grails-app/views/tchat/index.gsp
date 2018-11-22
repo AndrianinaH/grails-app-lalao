@@ -18,41 +18,28 @@
         <p><strong>Mahery Kevin</strong></p>
 
         <div class="discussion_content">
-            <!--div class='incoming_message'>
-                <div class='received_message'>
-                    <div class='received_width_message'>
-                        <div class='card-panel red message-content'>
-                            <span class='white-text'>message</span>
+            <g:each var="message" in="${messages}">
+                <g:if test="${message.idAuteur == session.grails_user.id}">
+                    <div class='outgoing_message'>
+                        <div class='sent_message'>
+                            <div class='card-panel green darken-2 message-content'>
+                                <span id="${message.id}" class='white-text'>${message.content}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class='outgoing_message'>
-                <div class='sent_message'>
-                    <div class='card-panel green darken-2 message-content'>
-                        <span class='white-text'>message</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class='outgoing_message'>
-                <div class='sent_message'>
-                    <div class='card-panel green darken-2 message-content'>
-                        <span class='white-text'>message</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class='incoming_message'>
-                <div class='received_message'>
-                    <div class='received_width_message'>
-                        <div class='card-panel red message-content'>
-                            <span class='white-text'>message</span>
+                </g:if>
+                <g:else>
+                    <div class='incoming_message'>
+                        <div class='received_message'>
+                            <div class='received_width_message'>
+                                <div class='card-panel red message-content'>
+                                    <span id="${message.id}" class='white-text'>${message.content}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div!-->
+                </g:else>
+            </g:each>
         </div>
 
 
@@ -83,6 +70,7 @@
 <asset:javascript src="materialize.min.js"/>
 <asset:javascript src="jquery.dataTables.js"/>
 <asset:javascript src="utile.js"/>
+<asset:javascript src="user.js"/>
 <script>
     $(document).ready(function () {
         //--------------- DataTables
@@ -101,49 +89,36 @@
         //------------- select
         $("select").material_select();
 
+        //------------- charger message
+        charger();
+        userConnected();
+
         $("#send").click(function () {
-            var URL = "${createLink(controller:'message',action:'sendMessage')}";
+            var URL = "${createLink(controller:'tchat',action:'sendMessage')}";
             var message = $.trim($("#message").val());
 
-            if(message) {
+            if (message) {
                 $.ajax({
                     url: URL,
                     type: "POST",
-                    data: {idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, content: message,
-                        dateCreation: "${utilService.formatDate(new Date())}", etat:"non-lu"},
-                    success: function (resp) {
-                        console.log(resp);
+                    data: {
+                        idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, content: message,
+                        etat: "non-lu"
+                    },
+                    success: function (rep) {
+                        createSendMsg(message, rep);
+                        $("#message").val("");
                     }
                 });
             }
         });
 
-        $("#sendTest").click(function () {
-            var URL = "${createLink(controller:'tchat',action:'getMessage')}";
-
-            $.ajax({
-                url: URL,
-                data: {idAuteur: 1, idDestinataire: 2},
-                success: function (resp) {
-                    console.log(resp);
-                    var i;
-                    for (i = 0; i < resp.length; i++) {
-                        if (resp[i].idAuteur == 1) {
-                            createSendMsg(resp[i].content);
-                        } else {
-                            createReceivedMsg(resp[i].content);
-                        }
-                    }
-                }
-            });
-        });
-
-        function createReceivedMsg(message) {
+        function createReceivedMsg(message, id) {
             var div = "<div class='incoming_message'>" +
                 "<div class='received_message'>" +
                 "<div class='received_width_message'>" +
                 "<div class='card-panel red message-content'>" +
-                "<span class='white-text'>" + message + "</span>" +
+                "<span id="+ id +" class='white-text'>" + message + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -151,15 +126,33 @@
             $(".discussion_content").append(div);
         }
 
-        function createSendMsg(message) {
+        function createSendMsg(message, id) {
             var div = "<div class='outgoing_message'>" +
                 "<div class='sent_message'>" +
                 "<div class='card-panel green darken-2 message-content'>" +
-                "<span class='white-text'>" + message + "</span>" +
+                "<span id="+ id +" class='white-text'>" + message + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>";
             $(".discussion_content").append(div);
+        }
+
+        function charger() {
+            var URL = "${createLink(controller:'tchat',action:'getLastMessage')}";
+            var lastMessage = $(".discussion_content span:last").attr('id');
+            setTimeout(function() {
+                $.ajax({
+                    url: URL,
+                    data:{idAuteur: ${session.grails_user.id}, idDestinataire: ${destinataire.id}, idLastMessage: lastMessage},
+                    success:function(rep){
+                        var i;
+                        for(i=0;i<rep.length;i++){
+                            createReceivedMsg(rep[i].content, rep[i].id);
+                        }
+                    }
+                });
+                charger();
+            },3000)
         }
     });
 </script>

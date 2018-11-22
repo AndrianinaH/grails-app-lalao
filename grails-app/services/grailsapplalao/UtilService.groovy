@@ -19,5 +19,5 @@ class UtilService {
         return f.format(date);
     }
 
-    static def uploadUrl = "D:/Serveur Web/UwAmp/www/grails_app_lalao_image/";
+    static def uploadUrl = "C:/UwAmp/www/grails_app_lalao_image/";
 }
