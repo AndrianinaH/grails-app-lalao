@@ -14,7 +14,7 @@
         </h5>
         <div class="container">
             <div>
-                <form method="POST" action="/auth/signup" enctype="multipart/form-data">
+                <form method="POST" action="/auth/changeProfil" enctype="multipart/form-data">
                     <input type='hidden' name="id" value="${user_actif.id}" required>
                     <input type='hidden' name="statut" value="${user_actif.statut}" required>
                     <input type='hidden' name="type" value="${user_actif.type}" required>

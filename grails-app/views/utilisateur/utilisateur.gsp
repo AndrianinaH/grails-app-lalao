@@ -35,7 +35,14 @@
             <g:each var="data" in="${allUser}">
                 <tr>
                     <td>${data.id}</td>
-                    <td>${data.imageProfil}</td>
+                    <td>
+                        <g:if test="${data.imageProfil!= "" && data.imageProfil!= null}">
+                            <img class="circle" width="50" src='http://localhost/grails_app_lalao_image/${data.imageProfil}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img width="50" class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </td>
                     <td>${data.nom}</td>
                     <td>${data.password}</td>
                     <td>${data.type == 1 ? "Admin" : "Joueur"}</td>

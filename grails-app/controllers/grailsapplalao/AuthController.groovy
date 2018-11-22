@@ -14,7 +14,11 @@ class AuthController extends BaseController{
     def login(Utilisateur user){
         try{
             session.setAttribute("grails_user",authService.login(user))
-            redirect(uri:"/")
+            if(session.grails_user.type==1){
+                redirect(uri:"/resultat")
+            }else {
+                redirect(uri:"/")
+            }
         }catch (Exception ex){
             ex.printStackTrace()
             redirect(uri:"/auth", params:[error:ex.getMessage()])
@@ -35,6 +39,17 @@ class AuthController extends BaseController{
     }
 
     def signup(Utilisateur user){
+        try{
+            def file = request.getFile("file")
+            authService.saveUserWithImageProfil(user,file);
+            redirect(uri:"/auth")
+        }catch (Exception ex){
+            ex.printStackTrace()
+            redirect(uri:"/auth/inscription", params:[error:ex.getMessage()])
+        }
+    }
+
+    def changeProfil(Utilisateur user){
         try{
             def file = request.getFile("file")
             authService.saveUserWithImageProfil(user,file);

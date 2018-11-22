@@ -52,13 +52,13 @@
     <li>
         <div class="userView">
             <div class="background">
-                <g:img dir="images" file="fond.jpg"/>
+                <g:img  dir="images" file="fond.jpg"/>
             </div>
             <a href="/auth/profil">
                 <span class="circle">
                     <g:if test="${session.grails_user != null}">
-                        <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil!= null}">
-                            <img src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
+                        <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}">
+                            <img class="circle" src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
                         </g:if>
                         <g:else>
                             <g:img class="circle" dir="images" file="user.png"/>
@@ -78,8 +78,8 @@
     <g:if test="${session.grails_user != null}">
         <g:if test="${session.grails_user.type == 1}">
             <li class="no-padding">
-                <a href="/">
-                    <i class="material-icons">dashboard</i>Tableau de bordd
+                <a href="/resultat">
+                    <i class="material-icons">insert_chart</i>Liste des résultats
                 </a>
             </li>
             <li>
