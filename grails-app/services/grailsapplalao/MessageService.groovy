@@ -20,6 +20,21 @@ class MessageService {
         return listMessage.list()
     }
 
+    def getMessageById(idAut){
+//        def criteria = MessageView.createCriteria();
+//        def messages = criteria{
+//            or{
+//                eq("idAuteur",idAut)
+//                eq("idDestinataire",idAut)
+//            }
+//            order("dateCreation", "desc")
+//        }
+        def listMessage = MessageView.where{
+            (idAuteur == idAut || idDestinataire == idAut)
+        }
+        return listMessage.list()
+    }
+
     def getLastMessage(idAut, idDest, idLastMessage){
         def message = Message.where {
             idAuteur == idDest && idDestinataire == idAut && id > idLastMessage

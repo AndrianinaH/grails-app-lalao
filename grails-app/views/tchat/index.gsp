@@ -22,7 +22,7 @@
     <asset:javascript src="user.js"/>
     <script> moment.locale('fr');</script>
     <div class="my-container">
-        <h5><strong>${destinataire.nom}</strong></h5>
+        <h5 class="${color}-text text-darken-1"><strong>${destinataire.nom}</strong></h5>
         <input type="hidden" id="userAuteur" value="${session.grails_user.nom}">
         <input type="hidden" id="userDestinataire" value="${destinataire.nom}">
         <div class="discussion_content">

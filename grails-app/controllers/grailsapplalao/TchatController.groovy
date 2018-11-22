@@ -6,6 +6,7 @@ class TchatController extends BaseController {
 
     def index() {
         def allModel = [ : ]
+        allModel << ["color" : this.color]
         allModel << ["destinataire" : Utilisateur.get(params.id)]
         allModel << ["utilService" : utilService]
         allModel << ["messages" : messageService.getMessage(session.grails_user.id, params.id)]

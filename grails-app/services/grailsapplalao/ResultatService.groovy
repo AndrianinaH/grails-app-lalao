@@ -15,4 +15,11 @@ class ResultatService {
         }
         return listResultat.list()
     }
+
+    def getResultatById(idAuteur){
+        def listResultat = ResultatView.where {
+            ("idAuteur" == idAuteur || "idDestinataire" == idAuteur)
+        }
+        return listResultat.list()
+    }
 }

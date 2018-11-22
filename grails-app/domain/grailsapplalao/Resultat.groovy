@@ -9,4 +9,8 @@ class Resultat {
 
     static constraints = {
     }
+
+    static mapping = {
+        version false
+    }
 }
