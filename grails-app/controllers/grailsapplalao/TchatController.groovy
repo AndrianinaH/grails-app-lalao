@@ -7,6 +7,7 @@ class TchatController extends BaseController {
     def index() {
         def allModel = [ : ]
         allModel << ["destinataire" : Utilisateur.get(params.id)]
+        allModel << ["utilService" : utilService]
         allModel << ["messages" : messageService.getMessage(session.grails_user.id, params.id)]
         if(params.error!=null) allModel << ["error" : params.error]
         render(view : "index", model: allModel)
@@ -15,7 +16,7 @@ class TchatController extends BaseController {
     def sendMessage(Message message) {
         message.setDateCreation(new Date())
         messageService.saveMessage(message)
-        render message.id
+        render message as JSON
     }
 
     def getMessage() {
@@ -27,6 +28,6 @@ class TchatController extends BaseController {
     }
 
     def userDisponible(){
-        render utilisateurService.userConnected(session.grails_user.id) as JSON;
+        render utilisateurService.userConnected(session.grails_user.id) as JSON
     }
 }

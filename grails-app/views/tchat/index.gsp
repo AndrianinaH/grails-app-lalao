@@ -14,32 +14,47 @@
 
 <body>
 <main>
+    <asset:javascript src="jquery-3.1.1.min.js"/>
+    <asset:javascript src="materialize.min.js"/>
+    <asset:javascript src="jquery.dataTables.js"/>
+    <asset:javascript src="moment-with-locales.min.js"/>
+    <asset:javascript src="utile.js"/>
+    <asset:javascript src="user.js"/>
+    <script> moment.locale('fr');</script>
     <div class="my-container">
         <h5><strong>${destinataire.nom}</strong></h5>
-
+        <input type="hidden" id="userAuteur" value="${session.grails_user.nom}">
+        <input type="hidden" id="userDestinataire" value="${destinataire.nom}">
         <div class="discussion_content">
             <g:each var="message" in="${messages}">
                 <g:if test="${message.idAuteur == session.grails_user.id}">
                     <div class='outgoing_message'>
-                        <div class="user-chip right chip">
+                        <div class="right user-chip-right chip">
                             <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}">
                                 <img src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
                             </g:if>
                             <g:else>
                                 <g:img class="circle" dir="images" file="user.png"/>
                             </g:else>
-                            ${session.grails_user.nom}
+                           ${session.grails_user.nom}
                         </div>
-                        <div class='right sent_message'>
+                        <div class='sent_message'>
                             <div class='card-panel green darken-2 message-content'>
-                                <span id="${message.id}" class='white-text'>${message.content}</span>
+                                <span class="white-text right-align">
+                                    <time id="discussion_datetime${message.id}">
+                                        <script>
+                                            $('#discussion_datetime${message.id}').html(moment('${utilService.formatDate(message.dateCreation)}','YYYY-MM-DD h:mm:ss.S').fromNow());
+                                        </script>
+                                    </time>
+                                </span>
+                                <p id="${message.id}" class='white-text'>${message.content}</p>
                             </div>
                         </div>
                     </div>
                 </g:if>
                 <g:else>
                     <div class='incoming_message'>
-                        <div class="user-chip left chip">
+                        <div class="user-chip-left chip">
                             <g:if test="${destinataire.imageProfil != "" && destinataire.imageProfil != null}">
                                 <img src='http://localhost/grails_app_lalao_image/${destinataire.imageProfil}'/>
                             </g:if>
@@ -48,10 +63,17 @@
                             </g:else>
                             ${destinataire.nom}
                         </div>
-                        <div class='left received_message'>
+                        <div class='received_message'>
                             <div class='received_width_message'>
                                 <div class='card-panel red message-content'>
-                                    <span id="${message.id}" class='white-text'>${message.content}</span>
+                                    <span class="white-text">
+                                        <time id="discussion_datetime${message.id}">
+                                            <script>
+                                                $('#discussion_datetime${message.id}').html(moment('${utilService.formatDate(message.dateCreation)}','YYYY-MM-DD h:mm:ss.S').fromNow());
+                                            </script>
+                                        </time>
+                                    </span>
+                                    <p id="${message.id}" class='white-text'>${message.content}</p>
                                 </div>
                             </div>
                         </div>
@@ -84,11 +106,7 @@
         </div>
     </div>
 </main>
-<asset:javascript src="jquery-3.1.1.min.js"/>
-<asset:javascript src="materialize.min.js"/>
-<asset:javascript src="jquery.dataTables.js"/>
-<asset:javascript src="utile.js"/>
-<asset:javascript src="user.js"/>
+
 <script>
     $(document).ready(function () {
         //--------------- DataTables
@@ -118,7 +136,6 @@
         function send(){
             var URL = "${createLink(controller:'tchat',action:'sendMessage')}";
             var message = $.trim($("#message").val());
-
             if (message) {
                 $.ajax({
                     url: URL,
@@ -135,12 +152,26 @@
             }
         }
 
-        function createReceivedMsg(message, id) {
+        function createReceivedMsg(message, rep) {
+            var imgProfil = '';
+            if (${destinataire.imageProfil != "" && destinataire.imageProfil != null}){
+                imgProfil += '<img src="http://localhost/grails_app_lalao_image/${destinataire.imageProfil}"/>'
+            }else{
+                imgProfil += '<g:img class="circle" dir="images" file="user.png"/>';
+            }
+            var username= $("#userDestinataire").val();
+            var dateCreation = moment(rep.dateCreation,'YYYY-MM-DDThh:mm:ssZ').fromNow();
+
             var div = "<div class='incoming_message'>" +
+                "<div class='user-chip-left chip'>"+
+                    imgProfil +
+                    username +
+                "</div>" +
                 "<div class='received_message'>" +
                 "<div class='received_width_message'>" +
                 "<div class='card-panel red message-content'>" +
-                "<span id="+ id +" class='white-text'>" + message + "</span>" +
+                " <span class='white-text'>"+ dateCreation +"</span>"+
+                "<p id="+ rep.id +" class='white-text'>" + message + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -148,11 +179,25 @@
             $(".discussion_content").append(div);
         }
 
-        function createSendMsg(message, id) {
+        function createSendMsg(message, rep) {
+            var imgProfil = '';
+            if (${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}){
+                imgProfil += '<img src="http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}"/>'
+            }else{
+                imgProfil += '<g:img class="circle" dir="images" file="user.png"/>';
+            }
+            var username= $("#userAuteur").val();
+            console.log(rep.dateCreation)
+            var dateCreation = moment(rep.dateCreation,'YYYY-MM-DDThh:mm:ssZ').fromNow();
             var div = "<div class='outgoing_message'>" +
+                "<div class='right user-chip-right chip'>"+
+                    imgProfil +
+                    username +
+                "</div>" +
                 "<div class='sent_message'>" +
                 "<div class='card-panel green darken-2 message-content'>" +
-                "<span id="+ id +" class='white-text'>" + message + "</span>" +
+                " <span class='white-text'>"+ dateCreation +"</span>"+
+                "<p id="+ rep.id +" class='white-text'>" + message + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</div>";
@@ -161,10 +206,10 @@
 
         function charger() {
             var URL = "${createLink(controller:'tchat',action:'getLastMessage')}";
-            var lastMessage = $(".discussion_content span:last").attr('id');
+            var lastMessage = $(".discussion_content p:last").attr('id');
             chargerMessage(URL,lastMessage);
             setTimeout(function() {
-                charger()
+                charger();
             },1000)
         }
 
@@ -175,7 +220,7 @@
                 success:function(rep){
                     var i;
                     for(i=0;i<rep.length;i++){
-                        createReceivedMsg(rep[i].content, rep[i].id);
+                        createReceivedMsg(rep[i].content, rep[i]);
                     }
                 }
             });
