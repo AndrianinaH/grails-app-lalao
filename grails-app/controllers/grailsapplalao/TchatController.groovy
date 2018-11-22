@@ -25,4 +25,8 @@ class TchatController extends BaseController {
     def getLastMessage(){
         render messageService.getLastMessage(params.idAuteur, params.idDestinataire, params.idLastMessage) as JSON
     }
+
+    def userDisponible(){
+        render utilisateurService.userConnected(session.grails_user.id) as JSON;
+    }
 }

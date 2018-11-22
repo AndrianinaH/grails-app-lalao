@@ -15,6 +15,7 @@
 <asset:javascript src="materialize.min.js"/>
 <asset:javascript src="jquery.dataTables.js"/>
 <asset:javascript src="utile.js"/>
+<asset:javascript src="user.js"/>
 </html>
 <script>
     $(document).ready(function () {
@@ -33,6 +34,8 @@
 
         //------------- select
         $("select").material_select();
+
+        userConnected();
     });
 </script>
 </body>

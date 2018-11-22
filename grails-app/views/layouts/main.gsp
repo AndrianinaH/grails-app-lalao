@@ -57,7 +57,7 @@
             <a href="/auth/profil">
                 <span class="circle">
                     <g:if test="${session.grails_user != null}">
-                        <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil!= null}">
+                        <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}">
                             <img src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
                         </g:if>
                         <g:else>
@@ -124,27 +124,8 @@
                 <div class="divider"></div>
             </li>
 
-            <li class="no-padding">
-                <g:link controller="tchat" id="4"><i class="material-icons">grade</i>Rabe Rabe</g:link>
-            </li>
-
-            <li class="no-padding">
-                <g:link controller="tchat" id="3"><i class="material-icons">grade</i>Rakoto Rakoto</g:link>
-            </li>
-
-            <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Han Solo
-                </a>
-            </li>
-            <li class="no-padding">
-                <a href="/fdfsdfsd">
-                    <i class="material-icons">grade</i>Han Solo
-                </a>
-            </li>
-
-
-
+            <div id="user-connected">
+            </div>
 
         </g:if>
     </g:if>

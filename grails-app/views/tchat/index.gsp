@@ -70,6 +70,7 @@
 <asset:javascript src="materialize.min.js"/>
 <asset:javascript src="jquery.dataTables.js"/>
 <asset:javascript src="utile.js"/>
+<asset:javascript src="user.js"/>
 <script>
     $(document).ready(function () {
         //--------------- DataTables
@@ -90,6 +91,7 @@
 
         //------------- charger message
         charger();
+        userConnected();
 
         $("#send").click(function () {
             var URL = "${createLink(controller:'tchat',action:'sendMessage')}";
