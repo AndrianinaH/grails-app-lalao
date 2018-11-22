@@ -54,11 +54,12 @@ class AuthController extends BaseController{
     def changeProfil(Utilisateur user){
         try{
             def file = request.getFile("file")
-            authService.saveUserWithImageProfil(user,file);
-            redirect(uri:"/auth")
+            def userCo = authService.saveUserWithImageProfil(user,file);
+            session.setAttribute("grails_user",userCo)
+            redirect(uri:"/auth/profil")
         }catch (Exception ex){
             ex.printStackTrace()
-            redirect(uri:"/auth/inscription", params:[error:ex.getMessage()])
+            redirect(uri:"/auth/profil", params:[error:ex.getMessage()])
         }
     }
 
@@ -67,6 +68,7 @@ class AuthController extends BaseController{
         allModel << ["color" : this.color]
         allModel << ["utilService" : this.utilService]
         allModel << ["user_actif" : session.grails_user]
+        if(params.error!=null) allModel << ["error" : params.error]
         render(view : "profil.gsp", model: allModel)
     }
 	

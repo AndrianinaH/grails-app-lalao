@@ -25,7 +25,6 @@ class AuthService {
         utilisateur.save()
     }
 
-
     def saveUtilisateur(Utilisateur utilisateur){
 
         if(utilisateur.getId()== null) {//------------- add
@@ -39,7 +38,8 @@ class AuthService {
                 utilisateur.setPassword((String)userInBdd.getOriginalValue("password"))
             }
         }
-        utilisateur.save();
+        utilisateur.save()
+        return utilisateur
     }
 
     def deleteUtilisateur(Utilisateur utilisateur){
@@ -65,7 +65,7 @@ class AuthService {
             String imgProfil = convertSpringFile(file).getName()
             utilisateur.setImageProfil(imgProfil)
         }
-        saveUtilisateur(utilisateur)
+        return saveUtilisateur(utilisateur)
     }
 
     def convertSpringFile(def file) throws IOException {

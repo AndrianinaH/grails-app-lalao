@@ -13,40 +13,44 @@
             <b>Gérer votre profil</b>
         </h5>
         <div class="container">
-            <div>
-                <form method="POST" action="/auth/changeProfil" enctype="multipart/form-data">
-                    <input type='hidden' name="id" value="${user_actif.id}" required>
-                    <input type='hidden' name="statut" value="${user_actif.statut}" required>
-                    <input type='hidden' name="type" value="${user_actif.type}" required>
-                    <input type="hidden" name="dateCreation" value="${utilService.formatDate(user_actif.dateCreation)}" required>
-                    <div class="row">
-                        <div class='input-field col s12'>
-                            <input type='text' id='mail' name="nom" value="${user_actif.nom}" required>
-                            <label for='mail'>Username</label>
+            <form method="POST" action="/auth/changeProfil" enctype="multipart/form-data">
+                <input type='hidden' name="id" value="${user_actif.id}" required>
+                <input type='hidden' name="statut" value="${user_actif.statut}" required>
+                <input type='hidden' name="type" value="${user_actif.type}" required>
+                <input type="hidden" name="dateCreation" value="${utilService.formatDate(user_actif.dateCreation)}" required>
+                <div class="row">
+                    <div class='input-field col s12'>
+                        <input type='text' id='mail' name="nom" value="${user_actif.nom}" required>
+                        <label for='mail'>Username</label>
+                    </div>
+                    <div class='input-field col s12'>
+                        <input type='password' id='password' name="password">
+                        <label for='password'>Mot de passe</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn cyan">
+                            <span>Image</span>
+                            <input type="file" name="file">
                         </div>
-                        <div class='input-field col s12'>
-                            <input type='password' id='password' name="password">
-                            <label for='password'>Mot de passe</label>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="file-field input-field">
-                            <div class="btn cyan">
-                                <span>Image</span>
-                                <input type="file" name="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
+                </div>
+                <div class="my-divider"></div>
+                <br>
+                <div class="centreo">
+                    <div class='row'>
+                        <button type='submit' class='col s12 btn btn-large waves-effect ${color} darken-1'>Sauvegarder</button>
                     </div>
-                    <div class="my-divider"></div>
-                    <br>
-                    <div class="centreo">
-                        <div class='row'>
-                            <button type='submit' class='col s12 btn btn-large waves-effect ${color} darken-1'>Sauvegarder</button>
-
-                        </div>
+                </div>
+            </form>
+            <br>
+            <p>${error} </p>
+        </div>
+    </div>
 </main>
 <asset:javascript src="jquery-3.1.1.min.js"/>
 <asset:javascript src="materialize.min.js"/>

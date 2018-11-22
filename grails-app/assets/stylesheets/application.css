@@ -192,7 +192,7 @@ table.dataTable{
 .discussion_content{
     width:100%;
     overflow-y: auto;
-    height: 450px;
+    /*height: 600px;*/
 }
 
 .received_message{
@@ -200,24 +200,24 @@ table.dataTable{
 }
 
 .received_width_message{
-    width:57%;
+    width:48%;
 }
 
-.outgoing_message{
-    overflow: hidden;
-}
+/*.outgoing_message{*/
+    /*overflow: hidden;*/
+/*}*/
 
 .sent_message{
-    float:right;
-    width: 46%;
+    width: 48%;
 }
 
 .message-content {
     padding: 14px !important;
 }
 
-.my-s2 {
-    width: 8.666667% !important;
+.user-chip{
+    position: relative;
+    top:10px;
 }
 
 /*---------- Fin Message Style ------------*/
