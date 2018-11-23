@@ -30,4 +30,13 @@ class TchatController extends BaseController {
     def userDisponible(){
         render utilisateurService.userConnected(session.grails_user.id) as JSON
     }
+
+    def createResultat(Resultat res) {
+        Random rand = new Random();
+        res.setDateCreation(new Date())
+        res.setScoreAuteur(rand.nextInt(100))
+        res.setScoreDestinataire(rand.nextInt(100))
+        resultatService.saveResultat(res)
+        render res as JSON
+    }
 }

@@ -108,6 +108,15 @@
         <g:if test="${session.grails_user.type == 2}">
             <li class="no-padding">
                 <a href="/fdfsdfsd">
+                    <i class="material-icons">stars</i>Mes Résultats
+                </a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+
+            <li class="no-padding">
+                <a href="/fdfsdfsd">
                     <i class="material-icons">message</i>Mes Messages <strong>(2)</strong>
                 </a>
             </li>
