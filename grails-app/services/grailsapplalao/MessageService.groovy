@@ -20,19 +20,11 @@ class MessageService {
         return listMessage.list()
     }
 
-    def getMessageById(idAut) {
-//        def criteria = MessageView.createCriteria();
-//        def messages = criteria{
-//            or{
-//                eq("idAuteur",idAut)
-//                eq("idDestinataire",idAut)
-//            }
-//            order("dateCreation", "desc")
-//        }
-        def listMessage = MessageView.where {
-            (idAuteur == idAut || idDestinataire == idAut)
-        }
-        return listMessage.list()
+    def getMessageById(idAut){
+        def sql = MessageView.executeQuery(
+                "from MessageView where idAuteur = :idAuteur group by idDestinataire order by dateCreation desc",
+                [idAuteur:idAut])
+        return sql
     }
 
     def getLastMessage(idAut, idDest, idLastMessage) {

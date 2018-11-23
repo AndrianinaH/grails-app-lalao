@@ -11,4 +11,11 @@ class UtilisateurService {
         }
         return users.list()
     }
+
+    def allJoueur(){
+        def users = Utilisateur.where {
+            type == 2
+        }
+        return users.list()
+    }
 }

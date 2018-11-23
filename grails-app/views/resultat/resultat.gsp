@@ -17,7 +17,9 @@
             <thead>
             <tr>
                 <th>id</th>
+                <th>imageAuteur</th>
                 <th>Auteur</th>
+                <th>imageDestinataire</th>
                 <th>Destinaire</th>
                 <th>ScoreAuteur</th>
                 <th>ScoreDestinaire</th>
@@ -28,7 +30,23 @@
             <g:each var="data" in="${allResultat}">
                 <tr>
                     <td>${data.id}</td>
+                    <td>
+                        <g:if test="${data.imageAuteur!= "" && data.imageAuteur!= null}">
+                            <img class="circle" width="50" src='http://localhost/grails_app_lalao_image/${data.imageAuteur}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img width="50" class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </td>
                     <td>${data.nomAuteur}</td>
+                    <td>
+                        <g:if test="${data.imageDestinataire!= "" && data.imageDestinataire!= null}">
+                            <img class="circle" width="50" src='http://localhost/grails_app_lalao_image/${data.imageDestinataire}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img width="50" class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </td>
                     <td>${data.nomDestinataire}</td>
                     <td>${data.scoreAuteur}</td>
                     <td>${data.scoreDestinataire}</td>
@@ -51,7 +69,7 @@
         //--------------- DataTables
         $('#datatable').DataTable({
             "language": getLanguage(),
-            order:[[5,"desc"]]
+            order:[[7,"desc"]]
         });
         //------------- sidenav
         $(".button-collapse").sideNav();
