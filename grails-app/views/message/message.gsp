@@ -24,7 +24,9 @@
             <tr>
                 <th>id</th>
                 <th>Contenu</th>
+                <th>imageAuteur</th>
                 <th>Auteur</th>
+                <th>imageDestinataire</th>
                 <th>Destinaire</th>
                 <th>dateCreation</th>
                 <th>actions</th>
@@ -35,7 +37,23 @@
                 <tr>
                     <td>${data.id}</td>
                     <td>${data.content}</td>
+                    <td>
+                        <g:if test="${data.imageAuteur!= "" && data.imageAuteur!= null}">
+                            <img class="circle" width="50" src='http://localhost/grails_app_lalao_image/${data.imageAuteur}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img width="50" class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </td>
                     <td>${data.nomAuteur}</td>
+                    <td>
+                        <g:if test="${data.imageDestinataire!= "" && data.imageDestinataire!= null}">
+                            <img class="circle" width="50" src='http://localhost/grails_app_lalao_image/${data.imageDestinataire}'/>
+                        </g:if>
+                        <g:else>
+                            <g:img width="50" class="circle" dir="images" file="user.png"/>
+                        </g:else>
+                    </td>
                     <td>${data.nomDestinataire}</td>
                     <td>${utilService.formatDate2(data.dateCreation)}</td>
                     <td>
@@ -194,7 +212,7 @@
         //--------------- DataTables
         $('#datatable').DataTable({
             "language": getLanguage(),
-            order:[[4,"desc"]]
+            order:[[6,"desc"]]
         });
         //------------- sidenav
         $(".button-collapse").sideNav();

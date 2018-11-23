@@ -7,7 +7,7 @@ class IndexController extends BaseController{
             def allModel = [ : ]
             allModel << ["color" : this.color]
             allModel << ["utilService" : utilService]
-            allModel << ["messages" : messageService.getMessageById(session.grails_user.id)]
+            allModel << ["messages" : messageService.getMessageById((int)session.grails_user.id)]
             allModel << ["resultats" : resultatService.getResultatById(session.grails_user.id)]
             render(view : "index", model : allModel)
         }

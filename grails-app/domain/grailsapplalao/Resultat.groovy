@@ -11,7 +11,4 @@ class Resultat {
         version false
     }
 
-    static mapping = {
-        version false
-    }
 }

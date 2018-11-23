@@ -10,7 +10,7 @@ class MessageController extends BaseController{
         def allModel = [ : ]
         allModel << ["color" : this.color]
         allModel << ["allMessage" : MessageView.list()]
-        allModel << ["allUser" : Utilisateur.list()]
+        allModel << ["allUser" : utilisateurService.allJoueur()]
         allModel << ["utilService" : this.utilService]
 
         render(view : "message.gsp", model: allModel)
