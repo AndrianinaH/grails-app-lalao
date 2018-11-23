@@ -10,8 +10,4 @@ class Resultat {
     static mapping = {
         version false
     }
-
-    static mapping = {
-        version false
-    }
 }

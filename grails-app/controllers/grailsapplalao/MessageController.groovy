@@ -4,28 +4,38 @@ import grails.converters.JSON
 
 import javax.rmi.CORBA.Util
 
-class MessageController extends BaseController{
+class MessageController extends BaseController {
 
     def index() {
-        def allModel = [ : ]
-        allModel << ["color" : this.color]
-        allModel << ["allMessage" : MessageView.list()]
-        allModel << ["allUser" : Utilisateur.list()]
-        allModel << ["utilService" : this.utilService]
+        def allModel = [:]
+        allModel << ["color": this.color]
+        allModel << ["allMessage": MessageView.list()]
+        allModel << ["allUser": Utilisateur.list()]
+        allModel << ["utilService": this.utilService]
 
-        render(view : "message.gsp", model: allModel)
+        render(view: "message.gsp", model: allModel)
     }
 
-    def save(Message message){
+    def save(Message message) {
         messageService.saveMessage(message);
-        redirect(uri:"/message")
+        redirect(uri: "/message")
     }
 
-    def delete(int id){
+    def delete(int id) {
         def message = new Message()
         message.setId(id)
         messageService.deleteMessage(message);
-        redirect(uri:"/message")
+        redirect(uri: "/message")
     }
 
+    def addViewMessage() {
+        messageService.addViewMessage(params.idAuteur, params.idDestinataire)
+    }
+
+    def isMessageView() {
+        def res = messageService.isMessageView(params.idLastMessage, params.idAuteur, params.idDestinataire)
+        if (res) {
+            render "success"
+        }
+    }
 }

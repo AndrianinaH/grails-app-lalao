@@ -182,6 +182,7 @@
         //------------- charger message
         charger();
         userConnected();
+        addVuMessage();
 
         $('.createResultat').click(function () {
             var URL = "${createLink(controller:'tchat',action:'createResultat')}";
@@ -301,6 +302,44 @@
             });
         }
 
+        $("#message").click(function () {
+            var URL = "${createLink(controller:'message',action:'addViewMessage')}";
+            $.ajax({
+                url: URL,
+                data: {
+                    idAuteur: ${session.grails_user.id},
+                    idDestinataire: ${destinataire.id}
+                },
+                success: function () {}
+            })
+        });
+
+        function addVu(URL){
+            var lastMessage = $(".discussion_content p:last").attr('id');
+            $.ajax({
+                url: URL,
+                data: {
+                    idAuteur: ${session.grails_user.id},
+                    idDestinataire: ${destinataire.id},
+                    idLastMessage : lastMessage
+                },
+                success: function (rep) {
+                    if(rep == "lu") {
+                        $("#message-vu").remove();
+                        var lastContent = $(".discussion_content p:last").parent().parent();
+                        lastContent.append("<span id='message-vu'>Vu</span>")
+                    }
+                }
+            });
+        }
+
+        function addVuMessage(){
+            var URL = "${createLink(controller:'tchat',action:'isMessageVu')}";
+            addVu(URL);
+            setTimeout(function () {
+                addVuMessage();
+            }, 1000)
+        }
 
     });
 </script>

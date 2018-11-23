@@ -11,6 +11,7 @@ class TchatController extends BaseController {
         allModel << ["utilService" : utilService]
         allModel << ["messages" : messageService.getMessage(session.grails_user.id, params.id)]
         if(params.error!=null) allModel << ["error" : params.error]
+        messageService.addViewMessage(session.grails_user.id, params.id)
         render(view : "index", model: allModel)
     }
 
@@ -39,5 +40,14 @@ class TchatController extends BaseController {
         res.setScoreDestinataire(rand.nextInt(100))
         resultatService.saveResultat(res)
         render res as JSON
+    }
+
+    def isMessageVu() {
+        def res = messageService.isMessageVu(params.idLastMessage, params.idAuteur, params.idDestinataire)
+        def result = "non-lu";
+        if (res) {
+            result = "lu"
+        }
+        render result
     }
 }
