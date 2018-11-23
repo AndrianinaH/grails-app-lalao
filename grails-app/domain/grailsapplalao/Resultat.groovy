@@ -3,11 +3,12 @@ package grailsapplalao
 class Resultat {
     int idAuteur
     int idDestinataire
-    double scoreAuteur
-    double scoreDestinataire
+    int scoreAuteur
+    int scoreDestinataire
     Date dateCreation
 
-    static constraints = {
+    static mapping = {
+        version false
     }
 
     static mapping = {

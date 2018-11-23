@@ -7,8 +7,8 @@ class ResultatView {
     int idDestinataire
     String nomDestinataire
     String imageDestinataire
-    double scoreAuteur
-    double scoreDestinataire
+    int scoreAuteur
+    int scoreDestinataire
     Date dateCreation
 
     static constraints = {
