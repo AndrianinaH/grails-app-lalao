@@ -7,6 +7,7 @@ import javax.rmi.CORBA.Util
 class MessageController extends BaseController {
 
     def index() {
+        def allModel = [:]
         allModel << ["color" : this.color]
         allModel << ["allMessage" : MessageView.list()]
         allModel << ["allUser" : utilisateurService.allJoueur()]

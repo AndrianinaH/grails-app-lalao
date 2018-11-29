@@ -227,6 +227,14 @@ table.dataTable{
     margin: 0 -12px 0 12px !important;
 }
 
+#message-vu {
+    float: right;
+    position: relative;
+    top: -10px;
+    font-weight: bold;
+    color: #1da4ae;
+}
+
 
 
 /*---------- Fin Message Style ------------*/

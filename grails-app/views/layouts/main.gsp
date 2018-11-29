@@ -58,10 +58,10 @@
                 <span class="circle">
                     <g:if test="${session.grails_user != null}">
                         <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}">
-                            <img class="circle" src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
+                            <img width="100" class="circle" src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
                         </g:if>
                         <g:else>
-                            <g:img class="circle" dir="images" file="user.png"/>
+                            <g:img width="100" class="circle" dir="images" file="user.png"/>
                         </g:else>
                     </g:if>
                 </span>

@@ -1,6 +1,7 @@
 package grailsapplalao
 
 import grails.gorm.transactions.Transactional
+import groovy.sql.Sql
 
 @Transactional
 class MessageService {
@@ -22,7 +23,7 @@ class MessageService {
 
     def getMessageById(idAut){
         def sql = MessageView.executeQuery(
-                "from MessageView where idAuteur = :idAuteur group by idDestinataire order by dateCreation desc",
+                "from MessageView where idAuteur = :idAuteur order by dateCreation desc",
                 [idAuteur:idAut])
         return sql
     }
@@ -57,3 +58,5 @@ class MessageService {
         return result;
     }
 }
+
+//SELECT `id`, `id_auteur`, `nom_auteur`, `image_auteur`, `content`, `id_destinataire`, `nom_destinataire`, `image_destinataire`, `etat` ,max(date_creation) as date_creation FROM `message_view` WHERE id_auteur =2 group by id_destinataire ORDER BY date_creation desc

@@ -31,7 +31,7 @@
             <g:each var="message" in="${messages}">
                 <g:if test="${message.idAuteur == session.grails_user.id}">
                     <div class='outgoing_message'>
-                        <div class="right user-chip-right chip">
+                        <div class="right user-chip-right chip amber lighten-3">
                             <g:if test="${session.grails_user.imageProfil != "" && session.grails_user.imageProfil != null}">
                                 <img src='http://localhost/grails_app_lalao_image/${session.grails_user.imageProfil}'/>
                             </g:if>
@@ -42,8 +42,8 @@
                         </div>
 
                         <div class='sent_message'>
-                            <div class='card-panel green darken-2 message-content'>
-                                <span class="white-text right-align">
+                            <div class='card-panel amber lighten-3 message-content'>
+                                <span class="grey-text right-align">
                                     <time id="discussion_datetime${message.id}">
                                         <script>
                                             $('#discussion_datetime${message.id}').html(moment('${utilService.formatDate(message.dateCreation)}', 'YYYY-MM-DD h:mm:ss.S').fromNow());
@@ -51,7 +51,8 @@
                                     </time>
                                 </span>
 
-                                <p id="${message.id}" class='white-text'>${message.content}</p>
+                                <p id="${message.id}" class='grey-text'>${message.content}</p>
+
                             </div>
                         </div>
                     </div>
@@ -70,8 +71,8 @@
 
                         <div class='received_message'>
                             <div class='received_width_message'>
-                                <div class='card-panel red message-content'>
-                                    <span class="white-text">
+                                <div class='card-panel grey lighten-3 message-content'>
+                                    <span class="grey-text">
                                         <time id="discussion_datetime${message.id}">
                                             <script>
                                                 $('#discussion_datetime${message.id}').html(moment('${utilService.formatDate(message.dateCreation)}', 'YYYY-MM-DD h:mm:ss.S').fromNow());
@@ -79,7 +80,7 @@
                                         </time>
                                     </span>
 
-                                    <p id="${message.id}" class='white-text'>${message.content}</p>
+                                    <p id="${message.id}" class='grey-text'>${message.content}</p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,7 @@
 
                 <div class="input-field col s1">
                     <a title="jouer" id="play"
-                       class="btn-floating btn-large waves-effect waves-light red createResultat">
+                       class="btn-floating btn-large waves-effect waves-light cyan createResultat">
                         <i class="material-icons">games</i>
                     </a>
                 </div>
@@ -241,9 +242,9 @@
                 "</div>" +
                 "<div class='received_message'>" +
                 "<div class='received_width_message'>" +
-                "<div class='card-panel red message-content'>" +
-                " <span class='white-text'>" + dateCreation + "</span>" +
-                "<p id=" + rep.id + " class='white-text'>" + message + "</p>" +
+                "<div class='card-panel grey lighten-3 message-content'>" +
+                " <span class='grey-text'>" + dateCreation + "</span>" +
+                "<p id=" + rep.id + " class='grey-text'>" + message + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -262,14 +263,14 @@
             console.log(rep.dateCreation)
             var dateCreation = moment(rep.dateCreation, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
             var div = "<div class='outgoing_message'>" +
-                "<div class='right user-chip-right chip'>" +
+                "<div class='right user-chip-right chip amber lighten-3'>" +
                 imgProfil +
                 username +
                 "</div>" +
                 "<div class='sent_message'>" +
-                "<div class='card-panel green darken-2 message-content'>" +
-                " <span class='white-text'>" + dateCreation + "</span>" +
-                "<p id=" + rep.id + " class='white-text'>" + message + "</p>" +
+                "<div class='card-panel amber lighten-3 message-content'>" +
+                " <span class='grey-text'>" + dateCreation + "</span>" +
+                "<p id=" + rep.id + " class='grey-text'>" + message + "</p>" +
                 "</div>" +
                 "</div>" +
                 "</div>";
@@ -326,7 +327,7 @@
                 success: function (rep) {
                     if(rep == "lu") {
                         $("#message-vu").remove();
-                        var lastContent = $(".discussion_content p:last").parent().parent();
+                        var lastContent = $(".discussion_content p:last").parent();
                         lastContent.append("<span id='message-vu'>Vu</span>")
                     }
                 }
