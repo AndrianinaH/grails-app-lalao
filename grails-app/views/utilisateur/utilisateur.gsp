@@ -9,7 +9,7 @@
 <!----------------------- CRUD ------------------------>
 <main>
     <h5 class="my-titre ${color}-text text-darken-1">
-        <b>Gestion des messages</b>
+        <b>Gestion des utilisateurs</b>
     </h5>
     <div class="center-align">
         <a href="#createData" class='btn btn-large waves-effect amber'>
@@ -110,7 +110,7 @@
     </div>
 </div>
 
-<!------------ modal createData -------------->
+<!------------ modal editData -------------->
 <div id="editData" class="modal">
     <div class="modal-content">
         <a class="modal-action modal-close btn-floating grey darken-3 right"><i class="material-icons">close</i></a>

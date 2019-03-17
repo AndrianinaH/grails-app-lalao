@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<!------------ modal createData -------------->
+<!------------ modal editData -------------->
 <div id="editData" class="modal">
     <div class="modal-content">
         <a class="modal-action modal-close btn-floating grey darken-3 right"><i class="material-icons">close</i></a>
@@ -172,7 +172,7 @@
             <div class="input-field col s12">
                 <select id="etatEdit" name="etat" required>
                     <option value="non lu">non lu</option>
-                    <option value="non lu">lu</option>
+                    <option value="lu">lu</option>
                 </select>
                 <label>
                     Etat
